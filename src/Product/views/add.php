@@ -1,4 +1,5 @@
-<form action="/Warsztat4/src/index.php/products/add" method="post" class = form-inline>
+<form action="/Warsztat4/src/index.php/products/add" method="post"  
+      enctype="multipart/form-data" class = form-inline>
     Nazwa:<br>
     <input type="text" name="name">
     <br>
@@ -13,6 +14,9 @@
     <br>
     Pełny opis:<br>
     <textarea name='long_description'></textarea>
+    <br>
+    Zdjęcia:<br>
+    <input type="file" name="images[]" multiple>
     <br><br>
     <input type="submit" value="Dodaj">
 </form> 

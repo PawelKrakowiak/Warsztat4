@@ -4,21 +4,31 @@ include 'header.html';
 include 'General.php';
 include 'Homepage/Homepage.php';
 include 'Product/Product.php';
-include 'User/User.php';
-include 'User/Client/Client.php';
-include 'User/Admin/Admin.php';
+include 'Image/Image.php';
+//include 'User/User.php';
+//include 'User/Client/Client.php';
+//include 'User/Admin/Admin.php';
 
 
-if(checkRoute('products/add')) {
+if (checkRoute('products/add')) {
     $product = new Product();
     $product->add();
-}elseif(checkRoute('products/index')) {
+} elseif (checkRoute('products/index')) {
     $product = new Product();
     $product->index();
-}elseif(checkRoute('users/client')) {
+} elseif (checkRoute('products/view')) {
+    $product = new Product();
+    $product->view();
+} elseif (checkRoute('products/edit')) {
+    $product = new Product();
+    $product->edit();
+} elseif (checkRoute('products/delete')) {
+    $product = new Product();
+    $product->delete();
+} elseif (checkRoute('users/client')) {
     $client = new Client();
     $client->index();
-}else {
+} else {
     $homePage = new Homepage();
     $homePage->index();
 }

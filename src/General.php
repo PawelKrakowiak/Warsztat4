@@ -4,10 +4,12 @@ class General {
 
     static private $data;
     public $post;
+    public $get;
     public $files;
 
     public function __construct()
     {
+        $this->get = $_GET;
         $this->post = $_POST;
         $this->files = $_FILES;
     }
@@ -47,7 +49,7 @@ class General {
         return false;
     }
 
-    public function redirect(string $destiny) {
-        header('location:' . $destiny);
+    public function redirect(string $destination) {
+        header('location:' . $destination);
     }
 }
