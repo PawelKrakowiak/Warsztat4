@@ -1,7 +1,10 @@
 
 <div class='container'>
     <div class='row'>
-        <div class='col-md-9'>
+        <div class='col-md-12'>
+            <div style='text-align: right; margin: 20px 0'>
+              <a href='add' class='btn btn-info' style='padding:5px'>Dodaj produkt</a>
+            </div>
             <table class='table table-condensed table-hover'>
                 <tr>
                     <th>Nazwa</th>
@@ -15,19 +18,38 @@
                         <td>".$product['name']."</td>
                         <td>".$product['short_description']."</td>
                         <td>".$product['price']."</td>
-                    </tr>";
+                        <td>
+                          <a href='view?id=".$product['id']."' 
+                            class='btn btn-primary' style='padding:5px'>
+                            Szczegóły oferty
+                          </a>
+                        </td>";
+                  
+//                  if ($_SESSION["permissions"] == 2) { // 2 -> admin
+                    echo "<td>
+                            <a href='#' 
+                              class='btn btn-success' style='padding:5px'>
+                              Do koszyka
+                            </a>
+                          </td>
+                          <td>
+                            <a href='edit?id=".$product['id']."' 
+                              class='btn btn-info' style='padding:5px'>
+                              Edytuj
+                            </a>
+                          </td>
+                          <td>
+                            <a href='delete?id=".$product['id']."' 
+                              class='btn btn-danger' style='padding:5px'>
+                              Usuń
+                            </a>
+                          </td>";
+//                  }
+                  
+                  echo "</tr>";
                 }
                 ?>
             </table>
-        </div>
-        <div class ='col-md-3' style='padding-top:9px;'><br>
-  <?php
-  for ($i = 0; $i < count($data['Products']); $i++) {
-    echo " <a href='view?id=".$data['Products'][$i]['id'].
-      "' class='btn btn-primary' style='padding:5px'>Szczegóły oferty</a>
-        <a href='#' class='btn btn-success' style='padding:5px'>Do koszyka</a> <br>";
-  }
-  ?>
         </div>
     </div>
 </div>

@@ -70,8 +70,36 @@ class Product extends General
     }
     
     public function edit() {
-      if (isset($this->get['id']))
-      {
+      
+      if ($this->is_post() && isset($this->get['id'])) {
+        
+        if ($this->addProductValidation()) {
+          
+          
+          $name = $this->post['name'];
+          $amount = $this->post['amount'];
+          $price = $this->post['price'];
+          $shortDescription = $this->post['short_description'];
+          $longDescription = $this->post['long_description'];
+
+          $sql = "UPDATE Products SET 
+                  name='$name', amount='$amount', price='$price', 
+                  short_description='$shortDescription', long_description='$longDescription' 
+                  WHERE id = " . $this->get['id'];
+
+
+          $conn = $this->getConnection();
+          $result = $conn->query($sql);
+
+          if ($result === true) {
+            $this->redirect('Warsztat4/src/index.php/products/view?id=' . $this->get['id']);
+          } else {
+              echo $conn->error;
+          }
+        }
+        return false;
+      }
+      else if (isset($this->get['id'])) {
         $sql = "SELECT * FROM Products WHERE id =" . $this->get['id'];
         
         $conn = $this->getConnection();
@@ -87,8 +115,19 @@ class Product extends General
       }
     }
 
-    public function delete(string $id) {
-
+    public function delete() {
+        if (isset($this->get['id'])) {
+          $sql = "DELETE FROM Products WHERE id = " . $this->get['id'];
+          
+          $conn = $this->getConnection();
+          $result = $conn->query($sql);
+          
+          if ($result === true) {
+            $this->redirect('Warsztat4/src/index.php/products/index');
+          } else {
+              echo $conn->error;
+          }         
+        }
     }
 
     public function index(){

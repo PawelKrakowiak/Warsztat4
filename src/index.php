@@ -22,6 +22,9 @@ if (checkRoute('products/add')) {
 } elseif (checkRoute('products/edit')) {
     $product = new Product();
     $product->edit();
+} elseif (checkRoute('products/delete')) {
+    $product = new Product();
+    $product->delete();
 } elseif (checkRoute('users/client')) {
     $client = new Client();
     $client->index();

@@ -1,6 +1,7 @@
 <div class="container" style="width: 60%">
     <?php
     $product = General::getData();
+    $id = $product['id'];
     $name = $product['name'];
     $price = $product['price'];
     $images = $product['images'];
@@ -47,11 +48,16 @@
         </a>
     </div>
 
-
-
     <div>
         <a href='index' class='btn btn-primary' style='padding:5px'>Wróć do listy produktów</a>
         <a href='#' class='btn btn-success' style='padding:5px'>Do koszyka</a>
+        
+        <?php 
+//        if ($_SESSION["permissions"] == 2) { // 2 -> admin
+          echo "<a href='edit?id=".$id."' class='btn btn-info' style='padding:5px'>Edytuj</a>
+          <a href='delete?id=".$id."' class='btn btn-danger' style='padding:5px'>Usuń</a>";     
+//        }
+        ?>
     </div>
 
     <?php
